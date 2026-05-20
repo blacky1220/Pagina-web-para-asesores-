@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Optimización SEO Básica -->
+  <title>Asesores Patrimoniales - Ciudad Maderas</title>
+  <meta name="description" content="Construye tu hogar ideal en Ciudad Maderas con financiamiento accesible de hasta 4 años sin intereses." />
+  <meta property="og:title" content="Asesores Patrimoniales - Ciudad Maderas" />
+  <meta property="og:description" content="Casas listas para construir con facilidades de pago." />
+  <meta property="og:type" content="website" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    img {
+      filter: saturate(90%);
+    }
+  </style>
+</head>
+
+<body class="bg-[#F8F8F6] text-[#111827] antialiased">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 w-full bg-[#F8F8F6]/80 backdrop-blur-md border-b border-[#E5E0DA] z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold tracking-tight">
+        Asesores Patrimoniales
+      </h1>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#inicio" class="hover:text-[#7C8B7A] transition">Inicio</a>
+        <a href="#modelos" class="hover:text-[#7C8B7A] transition">Modelos</a>
+        <a href="#contacto" class="hover:text-[#7C8B7A] transition">Contacto</a>
+      </nav>
+      <!-- Botón que activa el Modal -->
+      <button onclick="abrirModal('Cotización')" class="bg-[#111827] text-white px-5 py-2 rounded-full hover:bg-[#1F2937] transition shadow-lg text-sm font-medium">
+        Cotizar
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="pt-40 pb-32 bg-gradient-to-br from-[#D6C6B8] via-[#CBB8A6] to-[#A89F91] relative overflow-hidden">
+    <div class="absolute w-96 h-96 bg-white/10 blur-3xl rounded-full top-0 left-0"></div>
+    <div class="absolute w-96 h-96 bg-black/10 blur-3xl rounded-full bottom-0 right-0"></div>
+
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight tracking-tight">
+        Construye tu hogar ideal
+      </h1>
+      <p class="mt-6 text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
+        Casas listas para construir con financiamiento accesible hasta 4 años sin intereses.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a href="#modelos" class="bg-[#111827] text-white px-8 py-4 rounded-full font-medium hover:scale-105 hover:bg-[#1F2937] transition duration-300 shadow-lg">
+          Ver modelos
+        </a>
+        <button onclick="abrirModal('Cotización')" class="border border-white text-white px-8 py-4 rounded-full font-medium hover:bg-white hover:text-[#111827] transition duration-300">
+          Solicitar Cotización
+        </button>
+      </div>
+
+      <!-- BENEFICIOS -->
+      <div class="grid md:grid-cols-3 gap-6 mt-24">
+        <div class="glass p-8 rounded-3xl shadow-lg">
+          <h3 class="text-xl font-semibold text-white">Sin complicaciones</h3>
+          <p class="text-white/80 mt-3 leading-relaxed">Modelos listos para construir y procesos simples.</p>
+        </div>
+        <div class="glass p-8 rounded-3xl shadow-lg">
+          <h3 class="text-xl font-semibold text-white">Financiamiento accesible</h3>
+          <p class="text-white/80 mt-3 leading-relaxed">Hasta 4 años sin intereses para construir tu patrimonio.</p>
+        </div>
+        <div class="glass p-8 rounded-3xl shadow-lg">
+          <h3 class="text-xl font-semibold text-white">Tranquilidad total</h3>
+          <p class="text-white/80 mt-3 leading-relaxed">Acompañamiento y respaldo durante todo el proceso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / MODELOS -->
+  <section id="modelos" class="py-32">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+      <div>
+        <p class="uppercase tracking-[0.3em] text-sm text-[#7C8B7A] font-semibold">Ciudad Maderas</p>
+        <h2 class="text-5xl md:text-6xl font-bold leading-tight mt-4 tracking-tight">Construye con confianza</h2>
+        <p class="mt-8 text-[#6B7280] text-lg leading-relaxed max-w-xl">
+          Construye tu casa en Ciudad Maderas con financiamiento accesible, modelos listos y acompañamiento completo.
+        </p>
+        <button onclick="abrirModal('Información de Modelos')" class="mt-10 border border-[#111827] px-7 py-3 rounded-full hover:bg-[#111827] hover:text-white transition duration-300">
+          Recibir Catálogo
+        </button>
+      </div>
+      <div class="grid grid-cols-2 gap-6">
+        <img src="{{ url_for('static', filename='images/casa1.png') }}" alt="Casa Modelo 1" class="rounded-[30px] h-[280px] w-full object-cover shadow-lg hover:scale-105 transition duration-500">
+        <img src="{{ url_for('static', filename='images/casa2.png') }}" alt="Casa Modelo 2" class="rounded-[30px] h-[280px] w-full object-cover shadow-lg hover:scale-105 transition duration-500 mt-12">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CONSTRUYE FÁCIL -->
+  <section class="py-32 bg-[#1C1C1C] text-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="uppercase tracking-[0.3em] text-sm text-[#D6C6B8] font-semibold">Construcción inteligente</p>
+      <h2 class="text-5xl md:text-6xl font-bold mt-4 tracking-tight">Construye fácil</h2>
+      <p class="mt-6 text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+        Tu casa en Ciudad Maderas con financiamiento accesible y procesos más simples.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8 mt-20">
+        <div class="bg-white text-black rounded-[30px] overflow-hidden shadow-lg hover:-translate-y-2 transition duration-500">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200" alt="Modelos Modernos" class="h-60 w-full object-cover">
+          <div class="p-8 text-left">
+            <h3 class="text-2xl font-semibold">Modelos modernos</h3>
+            <p class="mt-4 text-gray-600 leading-relaxed">Diferentes opciones pensadas para adaptarse a tu estilo de vida.</p>
+          </div>
+        </div>
+
+        <div class="bg-white text-black rounded-[30px] overflow-hidden shadow-lg hover:-translate-y-2 transition duration-500">
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200" alt="Financiamiento Flexible" class="h-60 w-full object-cover">
+          <div class="p-8 text-left">
+            <h3 class="text-2xl font-semibold">Financiamiento flexible</h3>
+            <p class="mt-4 text-gray-600 leading-relaxed">Construye tu patrimonio con mensualidades cómodas y accesibles.</p>
+          </div>
+        </div>
+
+        <div class="bg-white text-black rounded-[30px] overflow-hidden shadow-lg hover:-translate-y-2 transition duration-500">
+          <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200" alt="Acompañamiento Completo" class="h-60 w-full object-cover">
+          <div class="p-8 text-left">
+            <h3 class="text-2xl font-semibold">Acompañamiento completo</h3>
+            <p class="mt-4 text-gray-600 leading-relaxed">Te guiamos durante todo el proceso para construir con tranquilidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO DE CONTACTO (PRINCIPAL) -->
+  <section id="contacto" class="py-32">
+    <div class="max-w-xl mx-auto px-6 text-center">
+      <p class="uppercase tracking-[0.3em] text-sm text-[#7C8B7A] font-semibold">Mantente informado</p>
+      <h2 class="text-5xl font-bold mt-4 tracking-tight">Regístrate Hoy</h2>
+      <p class="mt-5 text-[#6B7280] text-lg">Un asesor patrimonial te enviará la información que necesitas.</p>
+
+      <!-- Formulario optimizado con AJAX -->
+      <form id="formSuscripcion" class="mt-10 flex flex-col gap-4 text-left">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+          <input type="text" id="sub_nombre" required placeholder="Ej. Juan Pérez" class="w-full border border-[#E5E0DA] bg-white rounded-2xl px-5 py-4 outline-none focus:ring-2 focus:ring-[#7C8B7A] shadow-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+          <input type="email" id="sub_email" required placeholder="juan@ejemplo.com" class="w-full border border-[#E5E0DA] bg-white rounded-2xl px-5 py-4 outline-none focus:ring-2 focus:ring-[#7C8B7A] shadow-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Número de Teléfono</label>
+          <input type="tel" id="sub_telefono" required placeholder="10 dígitos" class="w-full border border-[#E5E0DA] bg-white rounded-2xl px-5 py-4 outline-none focus:ring-2 focus:ring-[#7C8B7A] shadow-sm">
+        </div>
+
+        <button type="submit" class="bg-[#111827] text-white py-4 rounded-full hover:bg-[#1F2937] transition duration-300 shadow-lg font-medium mt-4">
+          Enviar Información
+        </button>
+      </form>
+
+      <!-- Contenedor para mensajes de respuesta -->
+      <div id="statusMsgSuscripcion" class="hidden mt-6 p-4 rounded-2xl text-sm font-medium"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#111827] text-white py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
+      <h3 class="text-2xl font-bold tracking-tight">Asesores de Ciudad Maderas</h3>
+      <p class="text-gray-400 mt-4 md:mt-0">
+        © 2026 Todos los derechos reservados para Rafael HB quien trabajo como exclavo.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MODAL INTERACTIVO DE COTIZACIÓN -->
+  <div id="modalCotizacion" class="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-white rounded-[30px] max-w-lg w-full p-8 mx-4 relative shadow-2xl">
+      <button onclick="cerrarModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <h3 class="text-3xl font-bold tracking-tight mb-2">Solicitar <span id="modalTipoTitulo">Cotización</span></h3>
+      <p class="text-gray-600 mb-6">Ingresa tus datos para que un asesor genere tu cotización personalizada.</p>
+
+      <form id="formModal" class="flex flex-col gap-4 text-left">
+        <input type="hidden" id="modal_tipo" value="Cotización">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+          <input type="text" id="modal_nombre" required class="w-full border border-[#E5E0DA] bg-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#7C8B7A] shadow-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+          <input type="email" id="modal_email" required class="w-full border border-[#E5E0DA] bg-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#7C8B7A] shadow-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono de Contacto</label>
+          <input type="tel" id="modal_telefono" required class="w-full border border-[#E5E0DA] bg-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#7C8B7A] shadow-sm">
+        </div>
+
+        <button type="submit" class="bg-[#111827] text-white py-3 rounded-full hover:bg-[#1F2937] transition duration-300 shadow-lg font-medium mt-2">
+          Enviar Solicitud
+        </button>
+      </form>
+      <div id="statusMsgModal" class="hidden mt-4 p-3 rounded-xl text-xs font-medium"></div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: CONTROL DE INTERACTIVIDAD Y AJAX (API FETCH) -->
+  <script>
+    // Control del Modal
+    function abrirModal(tipo) {
+      document.getElementById('modal_tipo').value = tipo;
+      document.getElementById('modalTipoTitulo').innerText = tipo;
+      const modal = document.getElementById('modalCotizacion');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function cerrarModal() {
+      const modal = document.getElementById('modalCotizacion');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('formModal').reset();
+      document.getElementById('statusMsgModal').classList.add('hidden');
+    }
+
+    // Procesar envíos de formularios mediante Fetch API (Sin recargar página)
+    async function enviarDatos(payload, statusElementId, formElement) {
+      const statusElement = document.getElementById(statusElementId);
+      statusElement.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+      statusElement.classList.add('bg-gray-100', 'text-gray-600');
+      statusElement.innerText = "Procesando...";
+
+      try {
+        const response = await fetch('/api/prospectos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.get_json ? await response.json() : await response.json().catch(() => ({}));
+
+        statusElement.classList.remove('bg-gray-100', 'text-gray-600');
+
+        if (response.ok) {
+          statusElement.classList.add('bg-green-100', 'text-green-800');
+          statusElement.innerText = result.message || "Registro exitoso.";
+          formElement.reset();
+          if (formElement.id === 'formModal') {
+            setTimeout(cerrarModal, 2500);
+          }
+        } else {
+          statusElement.classList.add('bg-red-100', 'text-red-800');
+          statusElement.innerText = result.message || "Ocurrió un error.";
+        }
+      } catch (error) {
+        statusElement.classList.remove('bg-gray-100', 'text-gray-600');
+        statusElement.classList.add('bg-red-100', 'text-red-800');
+        statusElement.innerText = "No se pudo conectar con el servidor.";
+      }
+    }
+
+    // Escuchar formulario de suscripción
+    document.getElementById('formSuscripcion').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const payload = {
+        nombre: document.getElementById('sub_nombre').value,
+        email: document.getElementById('sub_email').value,
+        telefono: document.getElementById('sub_telefono').value,
+        tipo: 'Suscripción Informativa'
+      };
+      enviarDatos(payload, 'statusMsgSuscripcion', this);
+    });
+
+    // Escuchar formulario del Modal
+    document.getElementById('formModal').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const payload = {
+        nombre: document.getElementById('modal_nombre').value,
+        email: document.getElementById('modal_email').value,
+        telefono: document.getElementById('modal_telefono').value,
+        tipo: document.getElementById('modal_tipo').value
+      };
+      enviarDatos(payload, 'statusMsgModal', this);
+    });
+  </script>
+</body>
+</html>
