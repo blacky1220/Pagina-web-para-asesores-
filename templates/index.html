@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Optimización SEO Básica -->
   <title>Asesores Patrimoniales - Ciudad Maderas</title>
   <meta name="description" content="Construye tu hogar ideal en Ciudad Maderas con financiamiento accesible de hasta 4 años sin intereses." />
   <meta property="og:title" content="Asesores Patrimoniales - Ciudad Maderas" />
@@ -32,25 +31,22 @@
 
 <body class="bg-[#F8F8F6] text-[#111827] antialiased">
 
-  <!-- NAVBAR -->
   <header class="fixed top-0 left-0 w-full bg-[#F8F8F6]/80 backdrop-blur-md border-b border-[#E5E0DA] z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <h1 class="text-2xl font-bold tracking-tight">
         Asesores Patrimoniales
       </h1>
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <a href="#inicio" class="hover:text-[#7C8B7A] transition">Inicio</a>
-        <a href="#modelos" class="hover:text-[#7C8B7A] transition">Modelos</a>
-        <a href="#contacto" class="hover:text-[#7C8B7A] transition">Contacto</a>
+        <a href="/" class="hover:text-[#7C8B7A] transition">Inicio</a>
+        <a href="{{ url_for('modelos') }}" class="hover:text-[#7C8B7A] transition">Modelos</a>
+        <a href="/#contacto" class="hover:text-[#7C8B7A] transition">Contacto</a>
       </nav>
-      <!-- Botón que activa el Modal -->
       <button onclick="abrirModal('Cotización')" class="bg-[#111827] text-white px-5 py-2 rounded-full hover:bg-[#1F2937] transition shadow-lg text-sm font-medium">
         Cotizar
       </button>
     </div>
   </header>
 
-  <!-- HERO -->
   <section id="inicio" class="pt-40 pb-32 bg-gradient-to-br from-[#D6C6B8] via-[#CBB8A6] to-[#A89F91] relative overflow-hidden">
     <div class="absolute w-96 h-96 bg-white/10 blur-3xl rounded-full top-0 left-0"></div>
     <div class="absolute w-96 h-96 bg-black/10 blur-3xl rounded-full bottom-0 right-0"></div>
@@ -63,7 +59,7 @@
         Casas listas para construir con financiamiento accesible hasta 4 años sin intereses.
       </p>
       <div class="mt-10 flex flex-wrap justify-center gap-4">
-        <a href="#modelos" class="bg-[#111827] text-white px-8 py-4 rounded-full font-medium hover:scale-105 hover:bg-[#1F2937] transition duration-300 shadow-lg">
+        <a href="{{ url_for('modelos') }}" class="bg-[#111827] text-white px-8 py-4 rounded-full font-medium hover:scale-105 hover:bg-[#1F2937] transition duration-300 shadow-lg">
           Ver modelos
         </a>
         <button onclick="abrirModal('Cotización')" class="border border-white text-white px-8 py-4 rounded-full font-medium hover:bg-white hover:text-[#111827] transition duration-300">
@@ -71,7 +67,6 @@
         </button>
       </div>
 
-      <!-- BENEFICIOS -->
       <div class="grid md:grid-cols-3 gap-6 mt-24">
         <div class="glass p-8 rounded-3xl shadow-lg">
           <h3 class="text-xl font-semibold text-white">Sin complicaciones</h3>
@@ -89,7 +84,6 @@
     </div>
   </section>
 
-  <!-- ABOUT / MODELOS -->
   <section id="modelos" class="py-32">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
       <div>
@@ -109,7 +103,6 @@
     </div>
   </section>
 
-  <!-- SECCIÓN CONSTRUYE FÁCIL -->
   <section class="py-32 bg-[#1C1C1C] text-white">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <p class="uppercase tracking-[0.3em] text-sm text-[#D6C6B8] font-semibold">Construcción inteligente</p>
@@ -146,14 +139,12 @@
     </div>
   </section>
 
-  <!-- FORMULARIO DE CONTACTO (PRINCIPAL) -->
   <section id="contacto" class="py-32">
     <div class="max-w-xl mx-auto px-6 text-center">
       <p class="uppercase tracking-[0.3em] text-sm text-[#7C8B7A] font-semibold">Mantente informado</p>
       <h2 class="text-5xl font-bold mt-4 tracking-tight">Regístrate Hoy</h2>
       <p class="mt-5 text-[#6B7280] text-lg">Un asesor patrimonial te enviará la información que necesitas.</p>
 
-      <!-- Formulario optimizado con AJAX -->
       <form id="formSuscripcion" class="mt-10 flex flex-col gap-4 text-left">
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
@@ -173,22 +164,19 @@
         </button>
       </form>
 
-      <!-- Contenedor para mensajes de respuesta -->
       <div id="statusMsgSuscripcion" class="hidden mt-6 p-4 rounded-2xl text-sm font-medium"></div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="bg-[#111827] text-white py-12">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
       <h3 class="text-2xl font-bold tracking-tight">Asesores de Ciudad Maderas</h3>
       <p class="text-gray-400 mt-4 md:mt-0">
-        © 2026 Todos los derechos reservados para Rafael HB quien trabajo como exclavo.
+        © 2026 Todos los derechos reservados para Rafael HB.
       </p>
     </div>
   </footer>
 
-  <!-- MODAL INTERACTIVO DE COTIZACIÓN -->
   <div id="modalCotizacion" class="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="bg-white rounded-[30px] max-w-lg w-full p-8 mx-4 relative shadow-2xl">
       <button onclick="cerrarModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black transition">
@@ -221,7 +209,6 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT: CONTROL DE INTERACTIVIDAD Y AJAX (API FETCH) -->
   <script>
     // Control del Modal
     function abrirModal(tipo) {
@@ -231,6 +218,7 @@
       modal.classList.remove('opacity-0', 'pointer-events-none');
     }
 
+    // ... (El resto de tu JS de envío AJAX permanece idéntico e intacto) ...
     function cerrarModal() {
       const modal = document.getElementById('modalCotizacion');
       modal.classList.add('opacity-0', 'pointer-events-none');
@@ -238,7 +226,6 @@
       document.getElementById('statusMsgModal').classList.add('hidden');
     }
 
-    // Procesar envíos de formularios mediante Fetch API (Sin recargar página)
     async function enviarDatos(payload, statusElementId, formElement) {
       const statusElement = document.getElementById(statusElementId);
       statusElement.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
@@ -254,8 +241,7 @@
           body: JSON.stringify(payload)
         });
 
-        const result = await response.get_json ? await response.json() : await response.json().catch(() => ({}));
-
+        const result = await response.json().catch(() => ({}));
         statusElement.classList.remove('bg-gray-100', 'text-gray-600');
 
         if (response.ok) {
@@ -276,7 +262,6 @@
       }
     }
 
-    // Escuchar formulario de suscripción
     document.getElementById('formSuscripcion').addEventListener('submit', function(e) {
       e.preventDefault();
       const payload = {
@@ -288,7 +273,6 @@
       enviarDatos(payload, 'statusMsgSuscripcion', this);
     });
 
-    // Escuchar formulario del Modal
     document.getElementById('formModal').addEventListener('submit', function(e) {
       e.preventDefault();
       const payload = {

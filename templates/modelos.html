@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos Disponibles - Asesores Patrimoniales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <style>
+        :root {
+            --color-primario: #111827; /* El tono oscuro de tus botones */
+            --color-arena: #dfd5c6;    /* El fondo beige de tu hero */
+            --color-texto: #374151;
+            --color-blanco: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafb;
+            color: var(--color-texto);
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-modelos {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: var(--color-arena);
+            color: var(--color-primario);
+        }
+
+        .header-modelos h1 {
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+        }
+
+        .contenedor-principal {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* CUADRÍCULA DE MODELOS (Muestra 3 por fila en pantallas grandes) */
+        .grid-modelos {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-modelos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-modelos {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* TARJETA DE CADA MODELO */
+        .card-modelo {
+            background: var(--color-blanco);
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .visual-modelo {
+            height: 220px;
+            background-color: #eaeaea;
+            position: relative;
+        }
+
+        .visual-modelo img, .visual-modelo iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: cover;
+        }
+
+        .info-modelo {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .tag-marca {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6b7280;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .info-modelo h2 {
+            font-size: 1.5rem;
+            color: var(--color-primario);
+            margin: 0 0 10px 0;
+        }
+
+        .info-modelo p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            color: #4b5563;
+        }
+
+        .caracteristicas {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* CONTENEDOR PARA LOS DOS BOTONES */
+        .contenedor-botones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: auto; /* Empuja los botones al fondo equitativamente */
+        }
+
+        .btn-accion {
+            display: block;
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 10px 10px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-align: center;
+            transition: opacity 0.2s;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        /* ESTILO PARA EL BOTÓN RECORRIDO */
+        .btn-recorrido {
+            background-color: var(--color-blanco);
+            color: var(--color-primario);
+            border: 2px solid var(--color-primario);
+            line-height: 1.2;
+        }
+
+        .btn-accion:hover {
+            opacity: 0.85;
+        }
+
+        /* --- ESTILOS DEL MODAL (VENTANA EMERGENTE DE REGISTRO) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.activo {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: var(--color-blanco);
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.activo .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-cerrar {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.6rem;
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: var(--color-primario);
+            margin-bottom: 5px;
+        }
+
+        .grupo-input {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grupo-input label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #4b5563;
+        }
+
+        .grupo-input input {
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .grupo-input input:focus {
+            border-color: var(--color-primario);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-modelos">
+        <div class="tag-marca" style="color: var(--color-primario);">Ciudad Maderas</div>
+        <h1>Explora Nuestros 7 Modelos</h1>
+        <p>Encuentra el espacio perfecto para tu estilo de vida</p>
+    </header>
+
+<div class="contenedor-principal">
+
+    <a href="/" class="btn-volver"> Volver al Inicio</a>
+
+    <div class="grid-modelos">
+
+        <article class="card-modelo">
+            <div class="visual-modelo">
+                <img src="{{ url_for('static', filename='images/modelo_aura.png') }}" alt="Modelo Aura">
+            </div>
+            <div class="info-modelo">
+                <span class="tag-marca">Prototipo 1</span>
+                <h2>Modelo Aura</h2>
+                <p>Diseño conceptual con excelente distribución y optimización de luz natural.</p>
+                <ul class="caracteristicas">
+                    <li>🛏️ 2 Recámaras</li>
+                    <li>🚿 2.5 Baños</li>
+                    <li>🚗 1 Autos</li>
+                    <li>📐 79 m²</li>
+                </ul>
+                <div class="contenedor-botones">
+                    <a href="https://kuula.co/share/collection/7bdmn?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1" target="_blank" class="btn-accion btn-recorrido">Comenzar Recorrido</a>
+                    <button class="btn-accion" onclick="abrirModal('Modelo Aura')">Cotizar</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-modelo">
+            <div class="visual-modelo">
+                <img src="{{ url_for('static', filename='images/alba.png') }}" alt="Modelo 2">
+            </div>
+            <div class="info-modelo">
+                <span class="tag-marca">Prototipo 2</span>
+                <h2>Modelo Alba</h2>
+                <p>Espacios pensados para el crecimiento familiar y acabados de primera.</p>
+                <ul class="caracteristicas">
+                    <li>🛏️ 2 Recámaras</li>
+                    <li>🚿 2 Baños</li>
+                    <li>🚗 1 Autos</li>
+                    <li>📐 96.10 m²</li>
+                </ul>
+                <div class="contenedor-botones">
+                    <a href="https://kuula.co/share/collection/7bD8t?logo=0&info=1&fs=1&vr=1&sd=1&thumbs=1" target="_blank" class="btn-accion btn-recorrido">Comenzar Recorrido</a>
+                    <button class="btn-accion" onclick="abrirModal('Modelo Alba')">Cotizar</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-modelo">
+            <div class="visual-modelo">
+                <img src="{{ url_for('static', filename='images/modelo_nova.png') }}" alt="Modelo 3">
+            </div>
+            <div class="info-modelo">
+                <span class="tag-marca">Prototipo 3</span>
+                <h2>Modelo Nova</h2>
+                <p>Fachada moderna con amplitud en áreas sociales e integradas.</p>
+                <ul class="caracteristicas">
+                    <li>🛏️ 2 Recámaras</li>
+                    <li>🚿 2.5 Baños</li>
+                    <li>🚗 1 Autos</li>
+                    <li>📐 115.53 m²</li>
+                </ul>
+                <div class="contenedor-botones">
+                    <a href="https://kuula.co/share/collection/7bKM6?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1" target="_blank" class="btn-accion btn-recorrido">Comenzar Recorrido</a>
+                    <button class="btn-accion" onclick="abrirModal('Modelo Nova')">Cotizar</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-modelo">
+            <div class="visual-modelo">
+                <img src="{{ url_for('static', filename='images/modelo_stella.png') }}" alt="Modelo 4">
+            </div>
+            <div class="info-modelo">
+                <span class="tag-marca">Prototipo 4</span>
+                <h2>Modelo Stella </h2>
+                <p>Residencia de lujo con terraza privada y diseño de cocina abierta.</p>
+                <ul class="caracteristicas">
+                    <li>🛏️ 3 Recámaras</li>
+                    <li>🚿 2.5 Baños</li>
+                    <li>🚗 1 Autos</li>
+                    <li>📐 150.32 m²</li>
+                </ul>
+                <div class="contenedor-botones">
+                    <a href="https://kuula.co/share/collection/7bn1S?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1" target="_blank" class="btn-accion btn-recorrido">Comenzar Recorrido</a>
+                    <button class="btn-accion" onclick="abrirModal('Modelo Stella')">Cotizar</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-modelo">
+            <div class="visual-modelo">
+                <img src="{{ url_for('static', filename='images/modelo_antara.png') }}" alt="Modelo 5">
+            </div>
+            <div class="info-modelo">
+                <span class="tag-marca">Prototipo 5</span>
+                <h2>Modelo Antara</h2>
+                <p>Ideal para familias compactas que buscan confort y seguridad.</p>
+                <ul class="caracteristicas">
+                    <li>🛏️ 3 Recámaras</li>
+                    <li>🚿 4 Baños</li>
+                    <li>🚗 1 Auto</li>
+                    <li>📐 166.73 m²</li>
+                </ul>
+                <div class="contenedor-botones">
+                    <a href="https://kuula.co/share/L480x/collection/7HR52?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1" target="_blank" class="btn-accion btn-recorrido">Comenzar Recorrido</a>
+                    <button class="btn-accion" onclick="abrirModal('Modelo Antara')">Cotizar</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-modelo">
+            <div class="visual-modelo">
+                <img src="{{ url_for('static', filename='images/modelo_aqua.png') }}" alt="Modelo Aqua">
+            </div>
+            <div class="info-modelo">
+                <span class="tag-marca">Prototipo 6</span>
+                <h2>Modelo Aqua</h2>
+                <p>Estilo minimalista, ideal para inversionistas por su alta demanda.</p>
+                <ul class="caracteristicas">
+                    <li>🛏️ 2 Recámaras</li>
+                    <li>🚿 2.5 Baños</li>
+                    <li>🚗 1 Autos</li>
+                    <li>📐 167.78 m²</li>
+                </ul>
+                <div class="contenedor-botones">
+                    <a href="https://kuula.co/share/collection/7bKJz?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1" target="_blank" class="btn-accion btn-recorrido">Comenzar Recorrido</a>
+                    <button class="btn-accion" onclick="abrirModal('Modelo Aqua')">Cotizar</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-modelo">
+            <div class="visual-modelo">
+                <img src="{{ url_for('static', filename='images/modelo_lucero.png') }}" alt="Modelo 7">
+            </div>
+            <div class="info-modelo">
+                <span class="tag-marca">Prototipo 7</span>
+                <h2>Modelo Lucero</h2>
+                <p>La opción más amplia, recámara principal con vestidor y baño propio.</p>
+                <ul class="caracteristicas">
+                    <li>🛏️ 3 Recámaras</li>
+                    <li>🚿 3.5 Baños</li>
+                    <li>🚗 1 Autos</li>
+                    <li>📐 190.99 m²</li>
+                </ul>
+                <div class="contenedor-botones">
+                    <a href="https://kuula.co/share/collection/7bHzX?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1" target="_blank" class="btn-accion btn-recorrido">Comenzar Recorrido</a>
+                    <button class="btn-accion" onclick="abrirModal('Modelo Lucero')">Cotizar</button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</div>
+
+<div id="modalCotizacion" class="modal-overlay" onclick="cerrarModalExterno(event)">
+    <div class="modal-content">
+        <button class="modal-cerrar" onclick="cerrarModal()">&times;</button>
+        <h3 id="tituloModal">Solicitar Cotización</h3>
+        <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 20px; margin-top: 0;">Déjanos tus datos de contacto y te enviaremos la corrida financiera.</p>
+
+        <form action="/enviar-cotizacion" method="POST">
+            <input type="hidden" id="modelo_interes" name="modelo_interes" value="">
+
+            <div class="grupo-input">
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Pérez">
+            </div>
+
+            <div class="grupo-input">
+                <label for="telefono">Teléfono (WhatsApp)</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 5512345678">
+            </div>
+
+            <div class="grupo-input">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" id="correo" name="correo" required placeholder="ejemplo@correo.com">
+            </div>
+
+            <button type="submit" class="btn-accion" style="width: 100%; margin-top: 10px; padding: 12px 10px;">Enviar Datos</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function abrirModal(nombreModelo) {
+        document.getElementById('tituloModal').innerText = 'Cotizar ' + nombreModelo;
+        document.getElementById('modelo_interes').value = nombreModelo;
+        document.getElementById('modalCotizacion').classList.add('activo');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modalCotizacion').classList.remove('activo');
+    }
+
+    function cerrarModalExterno(e) {
+        if (e.target.id === "modalCotizacion") {
+            cerrarModal();
+        }
+    }
+</script>
+
+</body>
+</html>

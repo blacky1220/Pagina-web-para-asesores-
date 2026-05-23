@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Inmobiliario - Exclusivos Modelos de Casas</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-long {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-black m-0 overflow-x-hidden text-white font-sans">
+
+    <section role="banner" class="relative w-full h-screen bg-black overflow-hidden">
+
+        <div id="canvas-container" class="absolute inset-0 w-full h-full z-0"></div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
+
+        <div class="absolute top-6 left-6 z-30">
+            <a href="/" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-medium text-sm rounded-full transition-all duration-300 border border-white/10 flex items-center gap-2">
+                ← Volver al Inicio
+            </a>
+        </div>
+
+        <div class="relative z-20 flex flex-col items-center justify-end h-full pb-24 text-center">
+            <div class="max-w-3xl px-6 animate-fade-in-long">
+                <span class="text-xs font-mono tracking-widest text-sky-400 uppercase bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
+                    Arquitectura & Confort Premium
+                </span>
+                <h1 class="mt-4 text-4xl md:text-6xl font-extrabold tracking-tight leading-none text-white">
+                    Encuentra Tu Espacio Ideal
+                </h1>
+                <p class="mt-6 max-w-xl mx-auto text-base md:text-lg leading-relaxed text-gray-400">
+                    Explora nuestra selecta variedad de prototipos residenciales. Diseños de vanguardia pensados para optimizar cada rincón y aprovechar al máximo la iluminación natural.
+                </p>
+                <div class="mt-8">
+                    <a href="#catalogo" class="px-6 py-3 bg-sky-500 hover:bg-sky-600 font-medium rounded-lg transition-colors shadow-lg shadow-sky-500/20">
+                        Ver Catálogo Completo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="catalogo" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Modelos Residenciales</h2>
+            <p class="text-gray-400 mt-3 max-w-md mx-auto">Haz clic o explora las especificaciones de cada uno de nuestros prototipos exclusivos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/30">
+                <div class="relative h-64 bg-zinc-800">
+                    <img src="{{ url_for('static', filename='images/modelo_aura.png') }}" alt="Modelo Aura" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400">Prototipo 1</span>
+                    <h3 class="text-xl font-bold mt-1">Modelo Aura</h3>
+                    <p class="text-sm text-gray-400 mt-2">Diseño conceptual con excelente distribución y optimización de luz natural.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-zinc-300 border-t border-zinc-800 pt-4">
+                        <li class="flex items-center gap-2">🛏️ 2 Recámaras</li>
+                        <li class="flex items-center gap-2">🚿 2.5 Baños</li>
+                        <li class="flex items-center gap-2">🚗 1 Auto</li>
+                        <li class="flex items-center gap-2">📐 79 m² de construcción</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/30">
+                <div class="relative h-64 bg-zinc-800">
+                    <img src="{{ url_for('static', filename='images/alba.png') }}" alt="Modelo Alba" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400">Prototipo 2</span>
+                    <h3 class="text-xl font-bold mt-1">Modelo Alba</h3>
+                    <p class="text-sm text-gray-400 mt-2">Espacios armónicos con fachadas contemporáneas y acabados de primera.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-zinc-300 border-t border-zinc-800 pt-4">
+                        <li class="flex items-center gap-2">🛏️ 3 Recámaras</li>
+                        <li class="flex items-center gap-2">🚿 2 Baños</li>
+                        <li class="flex items-center gap-2">🚗 2 Autos</li>
+                        <li class="flex items-center gap-2">📐 95 m² de construcción</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/30">
+                <div class="relative h-64 bg-zinc-800">
+                    <img src="{{ url_for('static', filename='images/modelo_antara.png') }}" alt="Modelo Antara" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400">Prototipo 3</span>
+                    <h3 class="text-xl font-bold mt-1">Modelo Antara</h3>
+                    <p class="text-sm text-gray-400 mt-2">Amplitud inteligente con estancia a doble altura y terraza panorámica.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-zinc-300 border-t border-zinc-800 pt-4">
+                        <li class="flex items-center gap-2">🛏️ 3 Recámaras</li>
+                        <li class="flex items-center gap-2">🚿 3.5 Baños</li>
+                        <li class="flex items-center gap-2">🚗 2 Autos</li>
+                        <li class="flex items-center gap-2">📐 120 m² de construcción</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/30">
+                <div class="relative h-64 bg-zinc-800">
+                    <img src="{{ url_for('static', filename='images/modelo_aqua.png') }}" alt="Modelo Aqua" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400">Prototipo 4</span>
+                    <h3 class="text-xl font-bold mt-1">Modelo Aqua</h3>
+                    <p class="text-sm text-gray-400 mt-2">Sofisticación y frescura en un diseño pensado para la convivencia familiar.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-zinc-300 border-t border-zinc-800 pt-4">
+                        <li class="flex items-center gap-2">🛏️ 3 Recámaras</li>
+                        <li class="flex items-center gap-2">🚿 2.5 Baños</li>
+                        <li class="flex items-center gap-2">🚗 2 Autos</li>
+                        <li class="flex items-center gap-2">📐 108 m² de construcción</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/30">
+                <div class="relative h-64 bg-zinc-800">
+                    <img src="{{ url_for('static', filename='images/modelo_lucero.png') }}" alt="Modelo Lucero" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400">Prototipo 5</span>
+                    <h3 class="text-xl font-bold mt-1">Modelo Lucero</h3>
+                    <p class="text-sm text-gray-400 mt-2">Excelente iluminación con amplios ventanales y jardín posterior de ensueño.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-zinc-300 border-t border-zinc-800 pt-4">
+                        <li class="flex items-center gap-2">🛏️ 4 Recámaras</li>
+                        <li class="flex items-center gap-2">🚿 3 Baños</li>
+                        <li class="flex items-center gap-2">🚗 2 Autos</li>
+                        <li class="flex items-center gap-2">📐 135 m² de construcción</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/30">
+                <div class="relative h-64 bg-zinc-800">
+                    <img src="{{ url_for('static', filename='images/modelo_nova.png') }}" alt="Modelo Nova" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400">Prototipo 6</span>
+                    <h3 class="text-xl font-bold mt-1">Modelo Nova</h3>
+                    <p class="text-sm text-gray-400 mt-2">Diseño minimalista optimizado para un estilo de vida urbano y moderno.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-zinc-300 border-t border-zinc-800 pt-4">
+                        <li class="flex items-center gap-2">🛏️ 2 Recámaras</li>
+                        <li class="flex items-center gap-2">🚿 2 Baños</li>
+                        <li class="flex items-center gap-2">🚗 1 Auto</li>
+                        <li class="flex items-center gap-2">📐 85 m² de construcción</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/30">
+                <div class="relative h-64 bg-zinc-800">
+                    <img src="{{ url_for('static', filename='images/modelo_stella.png') }}" alt="Modelo Stella" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sky-400">Prototipo 7</span>
+                    <h3 class="text-xl font-bold mt-1">Modelo Stella</h3>
+                    <p class="text-sm text-gray-400 mt-2">Nuestra joya de la corona: residencia de lujo con roof garden integrado.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-zinc-300 border-t border-zinc-800 pt-4">
+                        <li class="flex items-center gap-2">🛏️ 4 Recámaras</li>
+                        <li class="flex items-center gap-2">🚿 4.5 Baños</li>
+                        <li class="flex items-center gap-2">🚗 3 Autos</li>
+                        <li class="flex items-center gap-2">📐 160 m² de construcción</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const container = document.getElementById('canvas-container');
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.z = 3;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        // Estructura arquitectónica toroidal estilizada
+        const geometry = new THREE.TorusGeometry(1, 0.4, 32, 100);
+
+        const vertexShader = `
+            uniform float time;
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+
+            vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+            vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+            vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+            vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+            float snoise(vec3 v) {
+                const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+                const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+                vec3 i = floor(v + dot(v, C.yyy));
+                vec3 x0 = v - i + dot(i, C.xxx);
+                vec3 g = step(x0.yzx, x0.xyz);
+                vec3 l = 1.0 - g;
+                vec3 i1 = min(g.xyz, l.zxy);
+                vec3 i2 = max(g.xyz, l.zxy);
+                vec3 x1 = x0 - i1 + C.xxx;
+                vec3 x2 = x0 - i2 + C.yyy;
+                vec3 x3 = x0 - D.yyy;
+                i = mod289(i);
+                vec4 p = permute(permute(permute(i.z + vec4(0.0, i1.z, i2.z, 1.0)) + i.y + vec4(0.0, i1.y, i2.y, 1.0)) + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+                float n_ = 0.142857142857;
+                vec3 ns = n_ * D.wyz - D.xzx;
+                vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+                vec4 x_ = floor(j * ns.z);
+                vec4 y_ = floor(j - 7.0 * x_);
+                vec4 x = x_ * ns.x + ns.yyyy;
+                vec4 y = y_ * ns.x + ns.yyyy;
+                vec4 h = 1.0 - abs(x) - abs(y);
+                vec4 b0 = vec4(x.xy, y.xy);
+                vec4 b1 = vec4(x.zw, y.zw);
+                vec4 s0 = floor(b0) * 2.0 + 1.0;
+                vec4 s1 = floor(b1) * 2.0 + 1.0;
+                vec4 sh = -step(h, vec4(0.0));
+                vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+                vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+                vec3 p0 = vec3(a0.xy, h.x);
+                vec3 p1 = vec3(a0.zw, h.y);
+                vec3 p2 = vec3(a1.xy, h.z);
+                vec3 p3 = vec3(a1.zw, h.w);
+                vec4 norm = taylorInvSqrt(vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3)));
+                p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+                vec4 m = max(0.6 - vec4(dot(x0, x0), dot(x1, x1), dot(x2, x2), dot(x3, x3)), 0.0);
+                m = m * m;
+                return 42.0 * dot(m * m, vec4(dot(p0, x0), dot(p1, x1), dot(p2, x2), dot(p3, x3)));
+            }
+
+            void main() {
+                vNormal = normal;
+                vPosition = position;
+                float displacement = snoise(position * 1.5 + time * 0.3) * 0.1;
+                vec3 newPosition = position + normal * displacement;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+            }
+        `;
+
+        const fragmentShader = `
+            uniform vec3 color;
+            uniform vec3 pointLightPos;
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+
+            void main() {
+                vec3 normal = normalize(vNormal);
+                vec3 lightDir = normalize(pointLightPos - vPosition);
+                float diffuse = max(dot(normal, lightDir), 0.0);
+
+                float fresnel = 1.0 - dot(normal, vec3(0.0, 0.0, 1.0));
+                fresnel = pow(fresnel, 2.5);
+
+                vec3 finalColor = color * diffuse + color * fresnel * 0.6;
+                gl_FragColor = vec4(finalColor, 1.0);
+            }
+        `;
+
+        const material = new THREE.ShaderMaterial({
+            uniforms: {
+                time: { value: 0 },
+                pointLightPos: { value: new THREE.Vector3(0, 0, 5) },
+                color: { value: new THREE.Color("#0ea5e9") }, // Color Sky-500 corporativo
+            },
+            vertexShader: vertexShader,
+            fragmentShader: fragmentShader,
+            wireframe: true,
+        });
+
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        const pointLight = new THREE.PointLight(0xffffff, 1.2, 100);
+        pointLight.position.set(0, 0, 5);
+        scene.add(pointLight);
+
+        let frameId;
+        function animate(t) {
+            material.uniforms.time.value = t * 0.0003;
+            mesh.rotation.y += 0.001;
+            mesh.rotation.x += 0.0005;
+            renderer.render(scene, camera);
+            frameId = requestAnimationFrame(animate);
+        }
+        animate(0);
+
+        window.addEventListener("mousemove", (e) => {
+            const x = (e.clientX / window.innerWidth) * 2 - 1;
+            const y = -(e.clientY / window.innerHeight) * 2 + 1;
+            const vec = new THREE.Vector3(x, y, 0.5).unproject(camera);
+            const dir = vec.sub(camera.position).normalize();
+            const dist = -camera.position.z / dir.z;
+            const pos = camera.position.clone().add(dir.multiplyScalar(dist));
+
+            pointLight.position.copy(pos);
+            material.uniforms.pointLightPos.value = pos;
+        });
+
+        window.addEventListener("resize", () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+    </script>
+</body>
+</html>
